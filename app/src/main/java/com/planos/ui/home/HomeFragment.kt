@@ -6,8 +6,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import com.planos.databinding.FragmentHomeBinding
+import com.google.android.material.snackbar.Snackbar
+import com.planos.databinding.ActivityMainBinding
 
 class HomeFragment : Fragment() {
 
@@ -22,6 +25,7 @@ class HomeFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+
         val homeViewModel =
             ViewModelProvider(this).get(HomeViewModel::class.java)
 
@@ -32,6 +36,14 @@ class HomeFragment : Fragment() {
         homeViewModel.text.observe(viewLifecycleOwner) {
             textView.text = it
         }
+
+        _binding!!.fab.setOnClickListener { view ->
+
+            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                .setAction("Action", null).show()
+
+        }
+
         return root
     }
 
@@ -39,4 +51,5 @@ class HomeFragment : Fragment() {
         super.onDestroyView()
         _binding = null
     }
+
 }
